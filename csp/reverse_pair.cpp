@@ -7,7 +7,7 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> a, temp;
+vector<int> raw, var;
 
 #define data long long
 
@@ -18,17 +18,17 @@ data mergeCountInversions(int left, int mid, int right)
     //归并到临时数组中
     int i = left, j = mid + 1;
     for (int k = left; k <= right; k++) {
-        if ((j > right) || (i <= mid) && (a[i] <= a[j]))
-            temp[k] = a[i++];
+        if ((j > right) || (i <= mid) && (raw[i] <= raw[j]))
+            var[k] = raw[i++];
         else {
-            temp[k] = a[j++];
+            var[k] = raw[j++];
             count += mid - i + 1;		//计算逆序对数
         }
     }
 
     //拷贝回数组a
     for (int i = left; i <= right; i++)
-        a[i] = temp[i];
+        raw[i] = var[i];
 
     return count;
 }
@@ -50,8 +50,8 @@ data countInversions_mergeSort(int left, int right)
 
 int main(){
     int n;  cin>>n;
-    a.resize(n); temp.resize(n);
-    for(auto &i:a)cin>>i;
-    cout<<countInversions_mergeSort(0,a.size()-1);
+    raw.resize(n); var.resize(n);
+    for(auto &i:raw)cin >> i;
+    cout<<countInversions_mergeSort(0, raw.size() - 1);
     return 0;
 }

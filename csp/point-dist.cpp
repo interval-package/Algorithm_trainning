@@ -14,7 +14,7 @@ typedef struct point{
     int x,y;
 } poi;
 
-int temp[10000];
+int var[10000];
 
 vector<poi> arr;
 
@@ -56,11 +56,11 @@ int divide(int left,int right){
     int k=0;
     for(int i=left;i<=right;i++)
         if(fabs(arr[i].x-arr[mid].x)<=_d)
-            temp[k++]=i;
-    sort(temp,temp+k, cmpY);
+            var[k++]=i;
+    sort(var, var + k, cmpY);
     for(int i=0;i<k;i++)
-        for(int j=i+1;j<k&&arr[temp[j]].y-arr[temp[i]].y<_d;j++)
-            d=min(d,dist(temp[i],temp[j]));
+        for(int j=i+1;j<k&& arr[var[j]].y - arr[var[i]].y < _d; j++)
+            d=min(d,dist(var[i], var[j]));
 
     return d;
 }
